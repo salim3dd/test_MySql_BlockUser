@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#17FFEB3B"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:textSize="35dp"
+        android:text="قواعد بيانات MySql"
+        android:padding="10px"
+        android:layout_margin="20px"
+        android:textColor="#3F51B5"
+        android:gravity="center"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="45dp" />
+
+    <Button
+        android:id="@+id/BTN_Show_Data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="قائمة المشتركين"
+        android:background="#408BC34A"
+        android:textColor="#000"
+        android:layout_weight="0"
+        android:layout_margin="20dp"
+        />
+    <Button
+        android:id="@+id/BTN_insert"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="اشتراك جديد"
+        android:background="#40FF9800"
+        android:textColor="#000"
+        android:layout_weight="0"
+        android:layout_margin="20dp"
+        />
+    <Button
+        android:id="@+id/BTN_LogIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:text="تسجيل الدخول"
+        android:background="#4000BCD4"
+        android:textColor="#000"
+        android:layout_weight="0"
+        android:layout_margin="20dp"
+        />
+
+</LinearLayout>

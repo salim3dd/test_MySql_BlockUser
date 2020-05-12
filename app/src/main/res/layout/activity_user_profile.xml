@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical"
+    tools:context=".User_Profile"
+    android:textAlignment="gravity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="top|center_horizontal"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/imageView_ShowAvatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:onClick="imageView_avatar"
+                    android:src="@drawable/avatar"
+                    app:civ_border_color="#e7e2df"
+                    app:civ_border_width="2dp"
+                    tools:ignore="OnClick" />
+
+                    <TextView
+                        android:id="@+id/Text_ShowUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textColor="#000"
+                        android:text="اسم المستخدم"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:textSize="20dp"
+                        />
+
+                <TextView
+                    android:id="@+id/Text_ShowEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="#2196F3"
+                    android:layout_weight="1"
+                    android:autoLink="email"
+                    android:text=" البريد الالكتروني"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:padding="30dp"
+                android:orientation="vertical">
+
+
+                <Button
+                    android:id="@+id/BTN_Edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_margin="10px"
+                    android:textSize="25dp"
+                    android:text="تعديل البيانات"
+                    android:background="#fff"
+                    android:textColor="#FF9800"/>
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"/>
+                <Button
+                    android:id="@+id/BTN_Delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_margin="10px"
+                    android:textSize="25dp"
+                    android:background="#fff"
+                    android:text="إلغاء الحساب"
+                    android:textColor="#FB0000"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

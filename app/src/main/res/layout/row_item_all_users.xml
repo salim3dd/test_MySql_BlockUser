@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:card_view="http://schemas.android.com/apk/res-auto"
+android:id="@+id/cardView_All_Users"
+android:layout_width="match_parent"
+android:layout_height="120dp"
+android:layout_marginBottom="5dp"
+android:layout_marginLeft="5dp"
+android:layout_marginRight="5dp"
+android:layout_marginTop="5dp"
+android:background="#fff"
+android:foreground="?android:attr/selectableItemBackground"
+android:orientation="vertical"
+card_view:cardBackgroundColor="#fff"
+card_view:cardCornerRadius="10dp"
+card_view:cardElevation="@dimen/cardview_default_elevation">
+
+<LinearLayout
+    android:id="@+id/Ly_Section_CardView_All_Users"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="120dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Text_UserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="UserName"
+            android:textColor="#a37838"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/Text_Email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="Email"
+            android:autoLink="all"
+            android:textColor="#2196F3"
+            android:textSize="16dp" />
+
+
+
+        <TextView
+            android:id="@+id/Text_RegDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:paddingRight="5dp"
+            android:textColor="#000"
+            android:textSize="11dp" />
+
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="120dp"
+        android:layout_weight="0"
+        android:layout_height="120dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/Img_Avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="11dp"
+            android:layout_margin="5dp"
+            android:src="@drawable/avatar"
+            card_view:civ_border_color="#e7e2df"
+            card_view:civ_border_width="2dp" />
+
+
+    </RelativeLayout>
+</LinearLayout>
+</androidx.cardview.widget.CardView>

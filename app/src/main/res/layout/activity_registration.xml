@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical"
+    tools:context=".Registration"
+    android:textAlignment="gravity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="top|center_horizontal"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="حدد صورة شخصية ثم أضغط كلمة \n Crop \n من نافذة تعديل اقتصاص الصورة \n اكمل تعبأة البيانات بشكل صحيح ثم إضغط زر إرسال"
+                    android:textColor="#6e6e6e"
+                    android:textSize="14sp" />
+
+                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/imageView_avatar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="2dp"
+                    android:onClick="imageView_avatar"
+                    android:src="@drawable/avatar"
+                    app:civ_border_color="#e7e2df"
+                    app:civ_border_width="2dp" />
+
+
+
+                    <EditText
+                        android:id="@+id/ETXT_UserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="1"
+                        android:hint="UserName"
+                        android:inputType="textPersonName"
+                        android:layout_gravity="right"
+                        android:maxLength="20"
+                        android:textColor="#000"
+                        android:textColorHint="#7e7e7e" />
+
+
+                    <EditText
+                        android:id="@+id/ETXT_Email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="2"
+                        android:hint="Email"
+                        android:layout_gravity="right"
+                        android:inputType="textEmailAddress"
+                        android:maxLength="100"
+                        android:textColor="#000"
+                        android:textColorHint="#7e7e7e" />
+
+
+                    <EditText
+                        android:id="@+id/ETXT_Pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="3"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:maxLength="50"
+                        android:textColor="#000"
+                        android:layout_gravity="right"
+                        android:textColorHint="#7e7e7e" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Ly_Reg_BPUser"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:gravity="top|center_horizontal"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_Reg"
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0"
+                android:background="#d1943a"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="إرسال"
+                android:textColor="#FFF"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
