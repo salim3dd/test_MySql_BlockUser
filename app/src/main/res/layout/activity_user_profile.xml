@@ -70,6 +70,41 @@
                 android:orientation="vertical">
 
 
+                <TextView
+                    android:id="@+id/text_active_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:textSize="18dp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="تم إرسال كود تفعيل الحساب على بريدك الإلكتروني" />
+
+                <EditText
+                    android:id="@+id/ETXT_active_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    android:ems="1"
+                    android:gravity="center"
+                    android:hint="ادخل رمز التفعيل هنا"
+                    android:inputType="textPersonName"
+                    android:maxLength="20"
+                    android:textColor="#000"
+                    android:textColorHint="#A67F73" />
+
+                <Button
+                    android:id="@+id/BTN_Send_ActiveCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:layout_margin="10px"
+                    android:textSize="25dp"
+                    android:text="إرسال"
+                    android:background="#FFC107"
+                    android:textColor="#000000"/>
+
                 <Button
                     android:id="@+id/BTN_Edit"
                     android:layout_width="match_parent"
@@ -79,6 +114,7 @@
                     android:textSize="25dp"
                     android:text="تعديل البيانات"
                     android:background="#fff"
+                    android:visibility="invisible"
                     android:textColor="#FF9800"/>
 
                 <Space
@@ -91,6 +127,7 @@
                     android:layout_weight="0"
                     android:layout_margin="10px"
                     android:textSize="25dp"
+                    android:visibility="invisible"
                     android:background="#fff"
                     android:text="إلغاء الحساب"
                     android:textColor="#FB0000"/>

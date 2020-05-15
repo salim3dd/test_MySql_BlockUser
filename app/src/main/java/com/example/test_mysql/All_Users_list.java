@@ -77,7 +77,7 @@ public class All_Users_list extends AppCompatActivity {
     }
 
 
-    public void Get_All_Data() {
+     void Get_All_Data() {
 
         final RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
@@ -90,7 +90,7 @@ public class All_Users_list extends AppCompatActivity {
 
                     mList.clear();
                     JSONArray jsonArray_usersS = jsonResponse.getJSONArray("All_Users");
-                    //Log.d("jsonArray_usersS", "jsonArray_usersS" + jsonArray_usersS.length());
+
                     for (int i = 0; i < jsonArray_usersS.length(); i++) {
                         JSONObject responsS = jsonArray_usersS.getJSONObject(i);
                         String UserKey = responsS.getString("UserKey").trim();

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,25 +30,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="حدد صورة شخصية ثم أضغط كلمة \n Crop \n من نافذة تعديل اقتصاص الصورة \n اكمل تعبأة البيانات بشكل صحيح ثم إضغط زر إرسال"
+                    android:text="حدد صورة رمزية من المعرض \n اكمل تعبأة البيانات بشكل صحيح ثم إضغط زر إرسال"
                     android:textColor="#6e6e6e"
                     android:textSize="14sp" />
 
-                <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageView_avatar"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
                     android:layout_marginTop="2dp"
-                    android:onClick="imageView_avatar"
+                    android:layout_marginRight="10dp"
                     android:src="@drawable/avatar"
                     app:civ_border_color="#e7e2df"
                     app:civ_border_width="2dp" />
 
-
-
-                    <EditText
+                <EditText
                         android:id="@+id/ETXT_UserName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

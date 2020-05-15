@@ -14,12 +14,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:text="قواعد بيانات MySql"
         android:padding="10px"
         android:layout_margin="20px"
         android:textColor="#3F51B5"
         android:gravity="center"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="45dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20px"
+        android:layout_weight="0"
+        android:gravity="center"
+        android:padding="10px"
+        android:text="رمز التفعيل"
+        android:textColor="#009688"
+        android:textSize="35sp"
         tools:layout_editor_absoluteX="45dp"
         tools:layout_editor_absoluteY="45dp" />
 
@@ -56,5 +70,16 @@
         android:layout_weight="0"
         android:layout_margin="20dp"
         />
+
+    <Button
+        android:id="@+id/BTN_ForgetPassWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_weight="0"
+        android:background="#5EF44336"
+        android:text="استعادة كلمة المرور"
+        android:textColor="#000"
+        android:textSize="25dp" />
 
 </LinearLayout>

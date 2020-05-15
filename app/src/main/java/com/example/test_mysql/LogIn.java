@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -83,6 +84,7 @@ public class LogIn extends AppCompatActivity {
                             String User_name = responsS.getString("UserName").trim();
                             String Email = responsS.getString("Email").trim();
                             String Avatar_img = responsS.getString("Avatar").trim();
+                            String ActiveAccount = responsS.getString("ActiveAccount").trim();
 
                         SharedPreferences.Editor editor = shared_Save.edit();
                         editor.putString("Local_UserKey", UserKey.trim());
@@ -90,8 +92,11 @@ public class LogIn extends AppCompatActivity {
                         editor.putString("Local_Email", Email.trim());
                         editor.putString("Local_PassWord", User_Password.trim());
                         editor.putString("Local_UserAvatar",  Avatar_img.trim());
+                        editor.putInt("Local_UserActiveCode",  Integer.parseInt(ActiveAccount.trim()));
                         editor.apply();
 
+
+                        MainActivity.Local_UserActiveCode = Integer.parseInt(ActiveAccount.trim());
                         MainActivity.Local_UserKey = UserKey.trim();
                         MainActivity.Local_UserName = User_name.trim();
                         MainActivity.Local_UserEmail = Email.trim();
@@ -137,6 +142,8 @@ public class LogIn extends AppCompatActivity {
             }
         };
 
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(stringRequest);
         stringRequest.setShouldCache(false);
 

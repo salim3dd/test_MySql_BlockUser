@@ -6,15 +6,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
      public static String Main_Link = "https://novbook.net/test/android/";
 
      public static String Local_UserKey , Local_UserName, Local_UserEmail, Local_UserAvatar;
+
+     public static int Local_UserActiveCode=0;
 
      public static String UserKey , UserName, UserEmail, UserAvatar;
 
@@ -51,6 +51,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.BTN_ForgetPassWord).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ForgetPassWord.class));
+            }
+        });
+
 
     }
 
@@ -62,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
         Local_UserName = shared_getData.getString("Local_UserName", "").trim();
         Local_UserEmail = shared_getData.getString("Local_Email", "").trim();
         Local_UserAvatar = shared_getData.getString("Local_UserAvatar", "").trim();
+        Local_UserActiveCode = shared_getData.getInt("Local_UserActiveCode", 0);
 
 
     }

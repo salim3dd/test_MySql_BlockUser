@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:background="#1ff9c982"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100px"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:text="نسيت كلمة المرور"
+        android:textColor="#673AB7" />
+
+    <EditText
+        android:id="@+id/EDTXT_Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="#fff"
+        android:gravity="center"
+        android:hint="البريد الالكتروني"
+        android:inputType="textEmailAddress"
+        android:padding="10sp"
+        android:text="2omantour@gmail.com"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/TextCheck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100px"
+        android:gravity="center"
+        android:textSize="20dp"
+
+        android:textColor="#009688" />
+
+    <Button
+        android:id="@+id/BTN_Send_D_forgetPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:layout_weight="0"
+        android:background="#FFC107"
+        android:gravity="center"
+        android:text="إرسال"
+        android:textColor="#000" />
+
+
+
+
+</LinearLayout>

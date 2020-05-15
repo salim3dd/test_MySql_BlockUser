@@ -17,6 +17,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -24,13 +25,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.Picasso;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+//import com.theartofdev.edmodo.cropper.CropImage;
+//import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +58,12 @@ public class UpdateUser_Profile extends AppCompatActivity {
         ETXTpassword = findViewById(R.id.ETXT_Pass);
 
         imageView_avatar = findViewById(R.id.imageView_avatar);
+        imageView_avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Add_Avatar();
+            }
+        });
 
         ETXT_User_Name.setText(MainActivity.UserName);
         ETXT_Email.setText(MainActivity.UserEmail);
@@ -111,6 +119,7 @@ public class UpdateUser_Profile extends AppCompatActivity {
             progressDialog.setMessage("انتظر تحديث البيانات");
             progressDialog.setCancelable(true);
             progressDialog.show();
+
             BTN_Update.setEnabled(false);
 
                 Response.Listener<String> responseLisener = new Response.Listener<String>() {
@@ -131,12 +140,14 @@ public class UpdateUser_Profile extends AppCompatActivity {
                                 editor.putString("Local_UserName", User_name);
                                 editor.putString("Local_PassWord", User_Email);
                                 editor.putString("Local_Email", User_Password);
-                                editor.putString("Local_UserAvatar",  NewAvatar);
-                                editor.apply();
 
-                                if(TextUtils.isEmpty(NewAvatar)&& isAvatarChange) {
+                                //تعديل الكود بإضافة علامة ! للتحقق من أن قيمتها غير فارغة
+                                if(!TextUtils.isEmpty(NewAvatar)&& isAvatarChange) {
+                                    editor.putString("Local_UserAvatar",  NewAvatar);
                                     MainActivity.Local_UserAvatar = NewAvatar;
                                 }
+                                editor.apply();
+
                                 MainActivity.Local_UserEmail = User_Email;
                                 MainActivity.Local_UserName = User_name;
 
@@ -171,6 +182,8 @@ public class UpdateUser_Profile extends AppCompatActivity {
                         ImgCode_Avatar,
                         responseLisener);
                 RequestQueue queue = Volley.newRequestQueue(UpdateUser_Profile.this);
+                 send_Data.setRetryPolicy(new DefaultRetryPolicy(0,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 queue.add(send_Data);
 
         }
@@ -197,15 +210,9 @@ public class UpdateUser_Profile extends AppCompatActivity {
         return output;
     }
 
-    public void imageView_avatar(View view) {
-        Add_Avatar();
-    }
 
     public void Add_Avatar() {
-
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(intent, 100);
     }
 
@@ -215,38 +222,16 @@ public class UpdateUser_Profile extends AppCompatActivity {
 
         if (requestCode == 100 && resultCode == RESULT_OK) {
 
-            int colorYallow = Color.argb(255, 244, 171, 54);
-            int colorRed = Color.argb(255, 255, 111, 0);
-            int colorBlack = Color.argb(150, 0, 0, 0);
-            Uri imageUri = data.getData();
-            CropImage.activity(imageUri)
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setCropShape(CropImageView.CropShape.OVAL)
-                    .setActivityTitle(getResources().getString(R.string.app_name))
-                    .setAutoZoomEnabled(true)
-                    .setBorderCornerColor(colorRed)
-                    .setBackgroundColor(colorBlack)
-                    .setBorderLineColor(colorYallow)
-                    .setBorderLineThickness(2)
-                    .setMaxCropResultSize(4000, 4000)
-                    .setAllowCounterRotation(true)
-                    .setAllowRotation(true)
-                    .setAutoZoomEnabled(true)
-                    .setFixAspectRatio(true)
-                    .start(this);
-        }
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                Uri resultUri = result.getUri();
+            Uri resultUri = data.getData();
                 imageView_avatar.setImageURI(resultUri);
                 isAvatarChange = true;
 
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
-            }
         }
+
     }
+
+
+
 
 
     //end

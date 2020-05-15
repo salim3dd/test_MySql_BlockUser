@@ -23,6 +23,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,11 +33,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.theartofdev.edmodo.cropper.CropImage;
-import com.theartofdev.edmodo.cropper.CropImageView;
+//import com.theartofdev.edmodo.cropper.CropImage;
+//import com.theartofdev.edmodo.cropper.CropImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +66,12 @@ public class Registration extends AppCompatActivity {
         BTN_Reg = findViewById(R.id.btn_Reg);
         imageView_avatar = findViewById(R.id.imageView_avatar);
 
+        imageView_avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Add_Avatar();
+            }
+        });
         progressDialog = new ProgressDialog(this);
         shared_Save = getSharedPreferences("UserData", Context.MODE_PRIVATE);
 
@@ -71,10 +79,11 @@ public class Registration extends AppCompatActivity {
             @SuppressLint("HardwareIds")
             @Override
             public void onClick(View view) {
-                permission_abrove();
+                Registration();
             }
         });
 
+        permission_abrove();
     }
 
     public void permission_abrove() {
@@ -85,13 +94,13 @@ public class Registration extends AppCompatActivity {
                 return;
             }
         }
-        Registration();
+
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 100 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Registration();
+           // Registration();
         } else {
             permission_abrove();
         }
@@ -139,7 +148,6 @@ public class Registration extends AppCompatActivity {
                 Base64_Img_Compress_Reg compress = new Base64_Img_Compress_Reg(this);
                 String ImgCode_Avatar = compress.Img_Compress(bitmap, 50);
 
-
                 BTN_Reg.setEnabled(false);
 
                 progressDialog.setMessage("انتظر ارسال البيانات");
@@ -147,6 +155,7 @@ public class Registration extends AppCompatActivity {
                 progressDialog.show();
 
                 final RequestQueue queue = Volley.newRequestQueue(this);
+
                 Response.Listener<String> responseLisener = new Response.Listener<String>() {
 
                     @Override
@@ -167,7 +176,12 @@ public class Registration extends AppCompatActivity {
                                 editor.putString("Local_Email", User_Email.trim());
                                 editor.putString("Local_PassWord", User_Password.trim());
                                 editor.putString("Local_UserAvatar",  UserKey.trim()+".jpg");
+
+                                editor.putInt("Local_UserActiveCode",0);
+
                                 editor.apply();
+
+                                MainActivity.Local_UserActiveCode = 0;
 
                                 MainActivity.Local_UserKey = UserKey.trim();
                                 MainActivity.Local_UserName = User_name.trim();
@@ -204,7 +218,9 @@ public class Registration extends AppCompatActivity {
                         User_Password,
                         ImgCode_Avatar,
                         responseLisener);
-                //RequestQueue queue = Volley.newRequestQueue(Registration.this);
+
+                send_Data.setRetryPolicy(new DefaultRetryPolicy(0,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 queue.add(send_Data);
             }
         }
@@ -231,15 +247,8 @@ public class Registration extends AppCompatActivity {
         return output;
     }
 
-    public void imageView_avatar(View view) {
-        Add_Avatar();
-    }
-
     public void Add_Avatar() {
-
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(intent, 100);
     }
 
@@ -249,36 +258,10 @@ public class Registration extends AppCompatActivity {
 
         if (requestCode == 100 && resultCode == RESULT_OK) {
 
-            int colorYallow = Color.argb(255, 244, 171, 54);
-            int colorRed = Color.argb(255, 255, 111, 0);
-            int colorBlack = Color.argb(150, 0, 0, 0);
-            Uri imageUri = data.getData();
-            CropImage.activity(imageUri)
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setCropShape(CropImageView.CropShape.OVAL)
-                    .setActivityTitle(getResources().getString(R.string.app_name))
-                    .setAutoZoomEnabled(true)
-                    .setBorderCornerColor(colorRed)
-                    .setBackgroundColor(colorBlack)
-                    .setBorderLineColor(colorYallow)
-                    .setBorderLineThickness(2)
-                    .setMaxCropResultSize(4000, 4000)
-                    .setAllowCounterRotation(true)
-                    .setAllowRotation(true)
-                    .setAutoZoomEnabled(true)
-                    .setFixAspectRatio(true)
-                    .start(this);
-        }
-        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
-            CropImage.ActivityResult result = CropImage.getActivityResult(data);
-            if (resultCode == RESULT_OK) {
-                Uri resultUri = result.getUri();
-                imageView_avatar.setImageURI(resultUri);
-                Add_AVATAR = true;
+            Uri resultUri = data.getData();
+            imageView_avatar.setImageURI(resultUri);
+            Add_AVATAR = true;
 
-            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
-                Exception error = result.getError();
-            }
         }
     }
 
